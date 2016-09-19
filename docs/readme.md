@@ -51,20 +51,20 @@ The project will be implemented with the following technologies:
 
 **Objective:** Extract information from ruby classes
 
-- [ ]: Scan .rb files found in Day 1 and extract public and private methods
-- [ ]: Extract AR associations from `has_many`, `has_one`, and `belongs_to` methods.
-- [ ]: Extract inheritance information from class definitions
+- [ ] Scan .rb files found in Day 1 and extract public and private methods
+- [ ] Extract AR associations from `has_many`, `has_one`, and `belongs_to` methods.
+- [ ] Extract inheritance information from class definitions
 
 ### Day 3
 
 **Objective:** Generate html output
 
-- [ ]: Generate an HTML file as a diagram
-- [ ]: Publish previously extracted information into the html file
-- [ ]: Style using CSS (and JavaScript, JQuery)
+- [ ] Generate an HTML file as a diagram
+- [ ] Publish previously extracted information into the html file
+- [ ] Style using CSS (and JavaScript, JQuery)
 
 ### Day 4
 
-- [ ]: Write tests
-- [ ]: Write production readme
-- [ ]: Push gem to RubyGems.org
+- [ ] Write tests
+- [ ] Write production readme
+- [ ] Push gem to RubyGems.org
