@@ -1,5 +1,7 @@
 require "diagramify/version"
 
 module Diagramify
-  # Your code goes here...
+  def test_gem
+    puts 'Hello world!'
+  end
 end
