@@ -1,7 +1,8 @@
 require "diagramify/version"
 require "diagramify/model"
 
+# Rails.application.eager_load!
+
 module Diagramify
-  Rails.application.eager_load!
   models = ActiveRecord::Base.descendants
 end
