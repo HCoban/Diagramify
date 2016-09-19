@@ -1,8 +1,6 @@
 require "diagramify/version"
-require "diagramify/second_test"
+require "diagramify/file"
 
 module Diagramify
-  def test_gem
-    puts 'Hello world!'
-  end
+  
 end
