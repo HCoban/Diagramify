@@ -1,6 +1,9 @@
 module Diagramify
-  class File
 
+
+  class Model
+
+    
     attr_reader :path
 
     def initialize(path)
