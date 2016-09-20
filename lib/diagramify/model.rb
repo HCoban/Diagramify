@@ -3,11 +3,9 @@ module Diagramify
 
   class Model
 
-    
-    attr_reader :path
-
-    def initialize(path)
-      @path = path
+    def initialize(rails_model)
+      @name = rails_model.name
+      @columns = rails_model.columns
     end
 
   end

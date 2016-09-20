@@ -1,14 +1,17 @@
 require "diagramify/version"
 require "diagramify/model"
-require "rails"
-require "active_support"
-require "rubygems"
-require "active_record"
 
-debugger
-
-# Rails.application.eager_load!
 
 module Diagramify
-  models = ActiveRecord::Base.descendants
+
+  attr_reader :models
+
+  Rails.application.eager_load!
+  @models = ActiveRecord::Base.descendants.map do |rails_model|
+    Diagramify::Model.new(rails_model)
+  end
+
+
+
+
 end
