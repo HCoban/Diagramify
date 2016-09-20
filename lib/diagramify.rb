@@ -2,7 +2,7 @@ require "diagramify/version"
 require "diagramify/model"
 require "rails"
 
-module Diagramify
+class Diagramify
 
   def self.abs_models
     if Rails.application
