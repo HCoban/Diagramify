@@ -16,10 +16,46 @@ class Diagramify
       background: transparent;
     }
 
+    body {
+        display: flex;
+        flex-direction: column
+    }
 
+    ul {
+      list-style: none;
+      margin-top: 10px;
+/*       margin-right: 20px; */
+      font-size: 18px;
+      width: 350px;
+      font-size: 20px;
+    }
+
+    ul li {
+      text-decoration: none;
+      padding-top: 5px;
+      font-size: 16px;
+    }
+
+    ul li:first-child {
+        margin-top: 10px;
+    }
 
     .model {
-      border: 1px solid black;
+      border: 5px solid black;
+      margin: 10px;
+      padding: 10px;
+      color: white;
+      background-color: red;
+      padding: 20px;
+    }
+
+    h1 {
+     font-size: 40px;
+     text-align: center;
+    }
+
+    .model-details {
+      display: flex;
     }"
 
   end
