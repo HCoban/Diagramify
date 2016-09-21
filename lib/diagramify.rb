@@ -28,6 +28,7 @@ class Diagramify
       file.write(Diagramify.css)
     end
 
+    puts "output.html created at root folder"
     return nil
   end
 
