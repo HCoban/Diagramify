@@ -22,6 +22,11 @@ class Model
       "<li>#{pm} (private)</li>"
     end)
 
+    assoc_list = []
+    associations.each do |assoc_name, type|
+      assoc_list.push("<li>#{type}: #{assoc_name}</li>")
+    end
+
     return (
       "<div class=\"model\">
         <h1>#{@name}</h1>
@@ -31,6 +36,9 @@ class Model
           </ul>
           <ul>Methods
           #{methods.join("")}
+          </ul>
+          <ul>Associations
+          #{assoc_list.join("")}
           </ul>
         </div>
       </div>"
@@ -63,5 +71,24 @@ class Model
 
     result
   end
+
+  def associations
+    assoc = {}
+    @rails_model.reflections.each do |name, association|
+      if association.class.name.include?("HasManyReflection")
+        type = "has_many"
+      elsif association.class.name.include?("HasOneReflection")
+        type = "has_one"
+      elsif association.class.name.include?("BelongsToReflection")
+        type = "belongs_to"
+      else
+        type = "other"
+      end
+      assoc[association.name.to_s] = type
+
+    end
+    assoc
+  end
+
 
 end
