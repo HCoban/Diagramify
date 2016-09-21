@@ -1,5 +1,5 @@
 # require "diagramify/version"
-require "diagramify/css_template"
+require "diagramify/templates"
 require "diagramify/model"
 
 class Diagramify
@@ -17,28 +17,15 @@ class Diagramify
 
   def self.print_models
     models = []
-
     Diagramify.abs_models.each { |m| models << m.to_div }
-
-    start = "<!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset=\"utf-8\">
-        <title>Diagramify</title>
-        <link rel=\"stylesheet\" media=\"all\" href=\"./application.css\">
-      </head>
-      <body>"
-
-    finish = "</body> </html>"
     body = models.join("")
 
-
     File.open("output.html", 'w+') do |file|
-      file.write(start+body+finish)
+      file.write(Diagramify.html(body))
     end
 
     File.open("application.css", "w+") do |file|
-      file.write(CSS)
+      file.write(Diagramify.css)
     end
 
     return nil

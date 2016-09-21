@@ -24,4 +24,19 @@ class Diagramify
 
   end
 
+  def self.html(body)
+    start = "<!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset=\"utf-8\">
+        <title>Diagramify</title>
+        <link rel=\"stylesheet\" media=\"all\" href=\"./application.css\">
+      </head>
+      <body>"
+
+    finish = "</body> </html>"
+
+    return(start + body + finish)
+  end
+
 end
