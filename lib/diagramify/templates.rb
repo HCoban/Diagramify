@@ -30,13 +30,13 @@ class Diagramify
       font-size: 20px;
     }
 
-    ul li {
+    ul li, .method-name {
       text-decoration: none;
       padding-top: 5px;
       font-size: 16px;
     }
 
-    ul li:first-child {
+    ul li:first-child, .method-name:first-child {
         margin-top: 10px;
     }
 
@@ -57,6 +57,25 @@ class Diagramify
     .model-details {
       display: flex;
       justify-content: space-between;
+    }
+
+    .method-source {
+      display: none;
+      position: absolute;
+      background-color: #ccc;
+      color: black;
+      z-index: 1;
+      left:50px;
+      padding: 5px;
+      border-radius: 3px;
+    }
+
+    .method-name:hover > div {
+      display: block;
+    }
+
+    .method-name {
+      position: relative;
     }"
 
   end

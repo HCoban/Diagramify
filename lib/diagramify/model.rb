@@ -16,13 +16,20 @@ class Model
       "<li>#{c.name} (#{c.sql_type})</li>"
     end
 
-    methods = public_methods.map do |pm|
-      "<li>#{pm}</li>"
+    methods = []
+    public_methods.each do |name, source_code|
+      methods.push(
+      "<div class=\"method-name\">#{name}
+      <div class=\"method-source\">#{source_code}</div>
+      </div>")
     end
 
-    methods = methods.concat(private_methods.map do |pm|
-      "<li>#{pm} (private)</li>"
-    end)
+    private_methods.each do |name, source_code|
+      methods.push(
+      "<div class=\"method-name\">#{name}
+      <div class=\"method-source\">#{source_code}</div>
+      </div>")
+    end
 
     assoc_list = []
     associations.each do |assoc_name, type|
@@ -61,13 +68,31 @@ class Model
     @rails_model.new.method(m).source_location
   end
 
+  def source_code(source_file, method)
+    path, start_line = source_file
+    source_code = []
+    start_line -= 1
+    file = File.readlines(path)
+
+    while true
+      source_code.push(file[start_line])
+      break if file[start_line] == "  end\n"
+
+      start_line += 1
+    end
+
+    source_code.join("<br>")
+  end
+
   def get_methods(type)
     filename = "#{@name.underscore}.rb"
-    result = [];
+    result = {};
 
     @rails_model.new.method(type).call(false).each do |pm|
-      source_file = source(@rails_model, pm)[0]
-      result.push(pm) if source_file.include?(filename)
+      source_file = source(@rails_model, pm)
+      if source_file[0].include?(filename)
+        result[pm] = source_code(source_file, pm)
+      end
     end
 
     result
