@@ -56,6 +56,7 @@ class Diagramify
 
     .model-details {
       display: flex;
+      justify-content: space-between;
     }"
 
   end

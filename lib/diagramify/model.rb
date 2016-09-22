@@ -7,6 +7,8 @@ class Model
     @name = rails_model.name
     @columns = rails_model.columns
     @rails_model = rails_model
+    @super_class = @rails_model.superclass
+    @children = @rails_model.descendants
   end
 
   def to_div
@@ -27,6 +29,10 @@ class Model
       assoc_list.push("<li>#{type}: #{assoc_name}</li>")
     end
 
+    children = @children.map do |child|
+      "<li>#{child.name}</li>"
+    end
+
     return (
       "<div class=\"model\">
         <h1>#{@name}</h1>
@@ -40,6 +46,11 @@ class Model
           <ul>Associations
           #{assoc_list.join("")}
           </ul>
+          <ul>Inheritance
+          <li>Parent: #{@super_class}</li>
+          <li>Children: </li>
+          #{children.join("")}
+          </ul>
         </div>
       </div>"
     )
@@ -50,26 +61,24 @@ class Model
     @rails_model.new.method(m).source_location
   end
 
-  def public_methods
+  def get_methods(type)
     filename = "#{@name.underscore}.rb"
     result = [];
 
-    @rails_model.new.public_methods(false).each do |pm|
-      result.push(pm) if @rails_model.new.method(pm).source_location[0].include?(filename)
+    @rails_model.new.method(type).call(false).each do |pm|
+      source_file = source(@rails_model, pm)[0]
+      result.push(pm) if source_file.include?(filename)
     end
 
     result
   end
 
+  def public_methods
+    get_methods(:public_methods)
+  end
+
   def private_methods
-    filename = "#{@name.underscore}.rb"
-    result = [];
-
-    @rails_model.new.private_methods(false).each do |pm|
-      result.push(pm) if @rails_model.new.method(pm).source_location[0].include?(filename)
-    end
-
-    result
+    get_methods(:private_methods)
   end
 
   def associations
@@ -89,6 +98,7 @@ class Model
     end
     assoc
   end
+
 
 
 end

@@ -1,6 +1,7 @@
 # require "diagramify/version"
 require "diagramify/templates"
 require "diagramify/model"
+require "launchy"
 
 class Diagramify
 
@@ -29,6 +30,7 @@ class Diagramify
     end
 
     puts "output.html created at root folder"
+    Launchy.open("./output.html")
     return nil
   end
 
