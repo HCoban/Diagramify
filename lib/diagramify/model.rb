@@ -1,7 +1,7 @@
 require 'byebug'
 
 class Model
-  attr_reader :name, :columns
+  attr_reader :name, :columns, :super_class
 
   def initialize(rails_model)
     @name = rails_model.name
@@ -12,33 +12,40 @@ class Model
   end
 
   def to_div
-    columns = @columns.map do |c|
-      "<li>#{c.name} (#{c.sql_type})</li>"
+    columns = []
+    @columns.each do |c|
+      columns.push(
+      "<div class=\"list-name\">#{c.name}
+      <div class=\"list-source\">#{c.sql_type}</div>
+      </div>")
     end
 
     methods = []
     public_methods.each do |name, source_code|
       methods.push(
-      "<div class=\"method-name\">#{name}
-      <div class=\"method-source\">#{source_code}</div>
+      "<div class=\"list-name\">#{name}
+      <div class=\"list-source\">#{source_code}</div>
       </div>")
     end
 
     private_methods.each do |name, source_code|
       methods.push(
-      "<div class=\"method-name\">#{name}
-      <div class=\"method-source\">#{source_code}</div>
+      "<div class=\"list-name\">#{name}
+      <div class=\"list-source\">#{source_code}</div>
       </div>")
     end
 
     assoc_list = []
-    associations.each do |assoc_name, type|
-      assoc_list.push("<li>#{type}: #{assoc_name}</li>")
+    associations.each do |assoc_name, value|
+      assoc_list.push(
+      "<div class=\"list-name\">#{value["type"]}: #{assoc_name}
+      <div class=\"list-source\">#{value["options"]}</div>
+      </div>")
     end
 
-    children = @children.map do |child|
-      "<li>#{child.name}</li>"
-    end
+    # children = @children.map do |child|
+    #   "<li>#{child.name}</li>"
+    # end
 
     return (
       "<div class=\"model\">
@@ -53,11 +60,6 @@ class Model
           <ul>Associations
           #{assoc_list.join("")}
           </ul>
-          <ul>Inheritance
-          <li>Parent: #{@super_class}</li>
-          <li>Children: </li>
-          #{children.join("")}
-          </ul>
         </div>
       </div>"
     )
@@ -68,17 +70,27 @@ class Model
     @rails_model.new.method(m).source_location
   end
 
+  def indent(string)
+    indent = ">"
+    string.each_char do |char|
+      break unless char == " "
+      indent += ">"
+    end
+    indent = indent[2..-1] if indent.length > 1
+    indent + string
+  end
+
   def source_code(source_file, method)
     path, start_line = source_file
     source_code = []
-    start_line -= 1
+    line_to_read = start_line - 1
     file = File.readlines(path)
 
     while true
-      source_code.push(file[start_line])
-      break if file[start_line] == "  end\n"
+      source_code.push(indent(file[line_to_read]))
+      break if file[line_to_read] == "  end\n"
 
-      start_line += 1
+      line_to_read += 1
     end
 
     source_code.join("<br>")
@@ -118,7 +130,12 @@ class Model
       else
         type = "other"
       end
-      assoc[association.name.to_s] = type
+      options = []
+      association.options.each do |key, value|
+        options.push("#{key}: #{value}")
+      end
+
+      assoc[association.name.to_s] = {"type" => type, "options" => options.join("\n") }
 
     end
     assoc

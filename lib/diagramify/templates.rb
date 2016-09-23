@@ -30,13 +30,13 @@ class Diagramify
       font-size: 20px;
     }
 
-    ul li, .method-name {
+    ul li, .list-name {
       text-decoration: none;
       padding-top: 5px;
       font-size: 16px;
     }
 
-    ul li:first-child, .method-name:first-child {
+    ul li:first-child, .list-name:first-child {
         margin-top: 10px;
     }
 
@@ -47,6 +47,7 @@ class Diagramify
       color: white;
       background-color: red;
       padding: 20px;
+      text-align: center;
     }
 
     h1 {
@@ -59,23 +60,33 @@ class Diagramify
       justify-content: space-between;
     }
 
-    .method-source {
+    .list-source {
       display: none;
       position: absolute;
       background-color: #ccc;
       color: black;
       z-index: 1;
-      left:50px;
+      left:150px;
       padding: 5px;
       border-radius: 3px;
+      text-align: left;
     }
 
-    .method-name:hover > div {
+    .list-name:hover > div {
       display: block;
     }
 
-    .method-name {
+    .list-name {
       position: relative;
+      cursor: pointer;
+    }
+
+    .superclass {
+       display flex;
+       border: 10px solid black;
+       text-align: center;
+       font-size: 40px;
+       padding: 10px;
     }"
 
   end

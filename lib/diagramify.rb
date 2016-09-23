@@ -17,9 +17,21 @@ class Diagramify
   end
 
   def self.print_models
-    models = []
-    Diagramify.abs_models.each { |m| models << m.to_div }
-    body = models.join("")
+    superclasses = {}
+    Diagramify.abs_models.each do |m|
+      if superclasses[m.super_class]
+        superclasses[m.super_class] += m.to_div
+      else
+        superclasses[m.super_class] = m.to_div
+      end
+    end
+
+    body = ""
+    superclasses.each do |superclass, model_div|
+      body += "<div class=\"superclass\">#{superclass}
+        #{model_div}
+      </div>"
+    end
 
     File.open("output.html", 'w+') do |file|
       file.write(Diagramify.html(body))
