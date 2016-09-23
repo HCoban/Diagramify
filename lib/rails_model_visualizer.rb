@@ -1,11 +1,12 @@
-# require "diagramify/version"
-require "diagramify/templates"
-require "diagramify/model"
+require "rails_model_visualizer/version"
+require "rails_model_visualizer/templates"
+require "rails_model_visualizer/model"
 require "launchy"
 
-class Diagramify
 
-  def self.abs_models
+class RMVisualizer
+
+  def self.import_models
     if Rails.application
       Rails.application.eager_load!
       return ActiveRecord::Base.descendants.map do |rails_model|
@@ -18,7 +19,7 @@ class Diagramify
 
   def self.print_models
     superclasses = {}
-    Diagramify.abs_models.each do |m|
+    RMVisualizer.import_models.each do |m|
       if superclasses[m.super_class]
         superclasses[m.super_class] += m.to_div
       else
@@ -34,11 +35,11 @@ class Diagramify
     end
 
     File.open("output.html", 'w+') do |file|
-      file.write(Diagramify.html(body))
+      file.write(RMVisualizer.html(body))
     end
 
     File.open("application.css", "w+") do |file|
-      file.write(Diagramify.css)
+      file.write(RMVisualizer.css)
     end
 
     puts "output.html created at root folder"

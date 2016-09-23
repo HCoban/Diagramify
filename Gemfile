@@ -1,6 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in diagramify.gemspec
+# Specify your gem's dependencies in rails_model_visualizer.gemspec
 gemspec
-
-gem 'byebug'

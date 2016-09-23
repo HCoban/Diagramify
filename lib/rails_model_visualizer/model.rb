@@ -1,5 +1,3 @@
-require 'byebug'
-
 class Model
   attr_reader :name, :columns, :super_class
 
@@ -42,11 +40,6 @@ class Model
       <div class=\"list-source\">#{value["options"]}</div>
       </div>")
     end
-
-    # children = @children.map do |child|
-    #   "<li>#{child.name}</li>"
-    # end
-
     return (
       "<div class=\"model\">
         <h1>#{@name}</h1>

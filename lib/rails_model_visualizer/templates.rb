@@ -1,4 +1,4 @@
-class Diagramify
+class RMVisualizer
 
   def self.css
     "html, body, h1, ul, li,
@@ -96,7 +96,7 @@ class Diagramify
     <html>
       <head>
         <meta charset=\"utf-8\">
-        <title>Diagramify</title>
+        <title>Rails Model Visualizer</title>
         <link rel=\"stylesheet\" media=\"all\" href=\"./application.css\">
       </head>
       <body>"

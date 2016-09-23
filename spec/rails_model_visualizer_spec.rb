@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Diagramify do
+describe RailsModelVisualizer do
   it 'has a version number' do
-    expect(Diagramify::VERSION).not_to be nil
+    expect(RailsModelVisualizer::VERSION).not_to be nil
   end
 
   it 'does something useful' do

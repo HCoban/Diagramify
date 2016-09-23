@@ -1,13 +1,13 @@
-# Diagramify
+# RailsModelVisualizer
 
 [Ruby Gems Link][link]
 [link]: http://www.example.com
 
 ## Minimum Viable Product
 
-Diagramify is a ruby gem which will improve documentation of rails apps. Developers will be able to generate a diagram summarizing a rails app using Diagramify. The diagram will show inheritance, AR associations, public and private methods, and instance variables of user-defined classes. By the end of week 11, this app will, at a minimum, satisfy the following criteria.
+RailsModelVisualizer is a ruby gem which will improve documentation of rails apps. Developers will be able to generate a diagram summarizing a rails app using RailsModelVisualizer. The diagram will show inheritance, AR associations, public and private methods, and instance variables of user-defined classes. By the end of week 11, this app will, at a minimum, satisfy the following criteria.
 
-- [ ] Installing through command line with `gem install diagramify`
+- [ ] Installing through command line with `gem install rails_model_visualizer`
 - [ ] Extracting user-defined methods and instance variables
 - [ ] Determining associations and inheritance between classes
 - [ ] Generating an interactive html output

@@ -2,15 +2,15 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'diagramify/version'
+require 'rails_model_visualizer/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "diagramify"
-  spec.version       = Diagramify::VERSION
+  spec.name          = "rails_model_visualizer"
+  spec.version       = RMVisualizer::VERSION
   spec.authors       = ["Halil Coban"]
   spec.email         = ["halil.coban@gmail.com"]
 
-  spec.summary       = %q{Diagramify is a ruby gem that generates a diagram
+  spec.summary       = %q{RMVisualizer is a ruby gem that generates a diagram
     summarizing rails apps.}
   # spec.description   = %q{TODO: Write a longer description or delete this line.}
   # spec.homepage      = "TODO: Put your gem's website or public repo URL here."

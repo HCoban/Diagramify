@@ -1,3 +1,3 @@
-class Diagramify
+class RMVisualizer
   VERSION = "0.1.0"
 end

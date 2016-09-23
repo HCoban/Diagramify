@@ -1,4 +1,0 @@
-#!/usr/bin/env ruby
-require 'diagramify'
-
-puts "HELLO"
