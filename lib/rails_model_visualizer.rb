@@ -35,7 +35,7 @@ class RMVisualizer
     end
 
 
-    dirname = File.dirname("docs/RMVisualizer")
+    dirname = "docs/RMVisualizer"
     unless File.directory?(dirname)
       FileUtils.mkdir_p(dirname)
     end
