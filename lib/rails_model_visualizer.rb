@@ -2,7 +2,7 @@ require "rails_model_visualizer/version"
 require "rails_model_visualizer/templates"
 require "rails_model_visualizer/model"
 require "launchy"
-
+require "fileutils"
 
 class RMVisualizer
 
@@ -34,16 +34,22 @@ class RMVisualizer
       </div>"
     end
 
-    File.open("output.html", 'w+') do |file|
+
+    dirname = File.dirname("docs/RMVisualizer")
+    unless File.directory?(dirname)
+      FileUtils.mkdir_p(dirname)
+    end
+
+    File.open("docs/RMVisualizer/output.html", 'w+') do |file|
       file.write(RMVisualizer.html(body))
     end
 
-    File.open("application.css", "w+") do |file|
+    File.open("docs/RMVisualizer/application.css", "w+") do |file|
       file.write(RMVisualizer.css)
     end
 
-    puts "output.html created at root folder"
-    Launchy.open("./output.html")
+    puts "output.html created at docs/RMVisualizer folder"
+    Launchy.open("docs/RMVisualizer/output.html")
     return nil
   end
 

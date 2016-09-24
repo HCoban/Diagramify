@@ -27,5 +27,6 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rails", "~> 4.1"
   spec.add_runtime_dependency 'launchy', '~> 2.4', '>= 2.4.3'
+  spec.add_runtime_dependency 'fileutils', '~> 0.7'
 
 end
