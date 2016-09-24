@@ -10,10 +10,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Halil Coban"]
   spec.email         = ["halil.coban@gmail.com"]
 
-  spec.summary       = %q{RMVisualizer is a ruby gem that generates a diagram
-    summarizing rails apps.}
-  # spec.description   = %q{TODO: Write a longer description or delete this line.}
-  # spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{RailsModelVisualizer is a ruby gem which
+    improves documentation of rails apps by generating an html output
+    visualizing rails models.}
+  spec.homepage      = "https://github.com/HCoban/rails_model_visualizer"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
