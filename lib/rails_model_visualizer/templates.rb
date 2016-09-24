@@ -67,7 +67,6 @@ class RMVisualizer
       color: black;
       z-index: 1;
       left:150px;
-      padding: 5px;
       border-radius: 3px;
       text-align: left;
     }
